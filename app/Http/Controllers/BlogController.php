@@ -13,7 +13,8 @@ class BlogController extends Controller
     }
 
     public function show(Blog $blog) {
-        return view('blog.show', ['blog' => $blog]);
+        $comments = $blog->getComments();
+        return view('blog.show', ['blog' => $blog, 'comments' => $comments]);
     }
 
     public function create() {
@@ -22,15 +23,15 @@ class BlogController extends Controller
 
     public function store(Request $request) {
         $data = $request->validate([
-            'category_id' => 'required',
-            'author_id' => 'required',
+            'category_id' => 'required|numeric',
+            'author_id' => 'required|numeric',
             'title' => 'required',
             'content' => 'required'
         ]);
 
         $blog = Blog::create($data);
 
-        return redirect(route('blog.show'))->with('success', 'Blog Created!');
+        return redirect(route('blog.show', ['blog' => $blog]))->with('success', 'Blog Created!');
     }
 
     public function edit(Blog $blog) {

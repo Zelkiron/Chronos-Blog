@@ -1,0 +1,1 @@
+<input type='text' class='bg-emerald-200 m-5' name={{$name}} placeholder={{$placeholder}} /><br>

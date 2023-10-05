@@ -1,0 +1,1 @@
+<a href='{{$link}}' class='p-5 text-white font-semibold hover:border-b-4 hover:border-sky-400 hover:text-sky-400 text-lg'>{{$title}}</a>

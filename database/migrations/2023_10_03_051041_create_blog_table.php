@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('author_id');
             $table->text('title');
             $table->longText('content');
-            $table->bigInteger('number_of_comments');
+            $table->bigInteger('number_of_comments')->default(0);
             $table->timestamps();
         });
     }

@@ -1,1 +1,6 @@
-alter table blogs alter column number_of_comments set default 0
+INSERT INTO categories (
+          `name`
+        )
+      VALUES (
+          'general'
+        );
