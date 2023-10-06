@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
 
 Route::get('/blog/{blog}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/new', [BlogController::class, 'create'])->name('blog.create');
+Route::get('/new', [BlogController::class, 'create'])->name('blog.create')->middleware('auth');
 
 Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 
@@ -56,6 +58,16 @@ Route::get('/user/{user}/edit', [UserController::class, 'create'])->name('user.c
 Route::put('/user/{user}', [UserController::class, 'edit'])->name('user.edit');
 
 Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
+
+/* CATEGORIES */
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
+
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
+
+/* COMMENTS */
+
+Route::post('/blog/{blog}', [CommentController::class, 'create'])->name('comment.create')->middleware('auth');
 
 
 /* 

@@ -1,6 +1,1 @@
-INSERT INTO categories (
-          `name`
-        )
-      VALUES (
-          'general'
-        );
+truncate table blogs

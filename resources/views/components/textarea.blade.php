@@ -1,1 +1,1 @@
-<textarea cols='20' rows='10' name={{$name}} class='mt-2 w-3/4 border-gray-300 border-2 rounded-md p-2'></textarea><br>
+<textarea cols={{$cols}} rows={{$rows}} name={{$name}} class='mt-2 w-3/4 border-gray-300 border-2 rounded-md p-2'></textarea><br>

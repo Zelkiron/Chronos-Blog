@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blog extends Model
@@ -16,27 +18,20 @@ class Blog extends Model
         'content',
     ];
 
-    protected $conversions = [
-        'category_name',
-        'author_name',
-    ];
-
-    public function getCategory() {
-        $category = DB::table('categories')->join('blogs', 'blogs.category_id', '=', 'categories.id')->value('name');
-        if(!$category) {
-            return "Category not found";
-        }
-        return $category;
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 
-    public function getAuthor() {
-        $author = DB::table('users')->join('blogs', 'blogs.author_id', '=', 'users.id')->value('username');
-        return $author;
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 
-    public function getComments() {
-        $comments = DB::table('comments')->join('blogs', 'blogs.id', '=', 'comments.blog_id')->get();
-        return $comments;
+    public function author() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function number_of_comments() {
+        return $this->comments->count();
     }
 
     use HasFactory;

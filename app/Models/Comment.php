@@ -14,20 +14,13 @@ class Comment extends Model
         'content',
     ];
 
-    public function getBlog() {
-        $blogTitle = DB::table('blogs')->join('comments', 'comments.blog_id', '=', 'blog.id')->value('title');
-        return $blogTitle;
+    public function blog() {
+        return $this->belongsTo(Blog::class);
     }
 
-    public function getAuthor() {
-        $author = DB::table('users')->join('comments', 'comments.author_id', '=', 'user.id')->value('username');
-        return $author;
+    public function author() {
+        return $this->belongsTo(User::class);
     }
-    
-    protected $conversions = [
-        'blog_title' => $this->getBlog(),
-        'author_name' => $this->getAuthor(),
-    ];
 
     use HasFactory;
 }

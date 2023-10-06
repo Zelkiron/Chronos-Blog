@@ -32,11 +32,11 @@ class UserController extends Controller
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/blogs');
+            return redirect(route('blog.index'));
         }
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records'
+            'username' => 'Invalid username/password.'
         ])->onlyInput('username');
     }
 

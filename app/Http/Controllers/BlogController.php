@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\User;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
@@ -15,10 +17,7 @@ class BlogController extends Controller
     }
 
     public function show(Blog $blog) {
-        $comments = $blog->getComments();
-        $blog->author_name = $blog->getAuthor();
-        $blog->category_name = $blog->getCategory();
-        return view('blog.show', ['blog' => $blog, 'comments' => $comments]);
+        return view('blog.show', ['blog' => $blog]);
     }
 
     public function create() {

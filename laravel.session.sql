@@ -1,0 +1,1 @@
+alter table blogs drop column number_of_comments

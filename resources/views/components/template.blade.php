@@ -10,9 +10,6 @@
     <x-navbar></x-navbar>
     <div class='container m-auto p-5 rounded-md flex justify-center'>
         <div class='block w-1/2 border-gray-500 border-2 p-5 rounded-md'>
-            @if (Auth::id())
-                Welcome to the fourms logged in user
-            @endif
             {{$slot}}
         </div>
     </div>
