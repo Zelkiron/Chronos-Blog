@@ -1,6 +1,6 @@
 <x-template>
     <x-h1 text='{{$blog->title}}' />
-    <p><b>Author ID:</b> {{$blog->author_id}}</p>
+    <p><b>Author ID:</b> {{$blog->author_name}}</p>
     <p><b>Category Name:</b> {{$blog->category_name}}</p>
     <p><b>Text:</b> {{$blog->content}}</p>
 

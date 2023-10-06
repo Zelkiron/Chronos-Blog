@@ -16,13 +16,21 @@ class Blog extends Model
         'content',
     ];
 
+    protected $conversions = [
+        'category_name',
+        'author_name',
+    ];
+
     public function getCategory() {
         $category = DB::table('categories')->join('blogs', 'blogs.category_id', '=', 'categories.id')->value('name');
+        if(!$category) {
+            return "Category not found";
+        }
         return $category;
     }
 
     public function getAuthor() {
-        $author = DB::table('users')->join('blogs', 'blogs.author_id', '=', 'user.id')->value('username');
+        $author = DB::table('users')->join('blogs', 'blogs.author_id', '=', 'users.id')->value('username');
         return $author;
     }
 
@@ -30,11 +38,6 @@ class Blog extends Model
         $comments = DB::table('comments')->join('blogs', 'blogs.id', '=', 'comments.blog_id')->get();
         return $comments;
     }
-
-    protected $conversions = [
-        'category_name',
-        'author_name',
-    ];
 
     use HasFactory;
 }

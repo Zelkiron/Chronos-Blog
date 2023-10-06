@@ -1,18 +1,21 @@
 <x-template>
-    <h1 class='text-3xl font-semibold'>Create Blog</h1>
+    <x-h1 text='Create Blog' />
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <p>{{$error}}</p>
-    @endforeach
-        
+        @foreach ($errors->all() as $error)
+            <p>{{$error}}</p>
+        @endforeach
     @endif
+
+    @php
+        $user_id = Auth::id();
+    @endphp
+
     <form method='post' action='{{route('blog.store')}}'>
         @csrf
         @method('post')
-        <x-input-text name='title' placeholder='title' />
-        <input type='text' name='category_id' placeholder='Category ID' /> <br>
-        <input type='text' name='author_id' placeholder='User ID' /> <br>
-        <textarea cols='20' rows='10' name='content' placeholder='content'></textarea> <br>
-        <input type='submit' name='submit' value='Make Blog' />
+        <x-input-text name='title' placeholder='Title' />
+        <x-select name="category_id" :options="$categories"/>
+        <x-textarea name="content" />
+        <x-submit name='Submit' value='Submit'/>
     </form>
 </x-template>

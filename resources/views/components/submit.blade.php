@@ -1,0 +1,1 @@
+<input type='submit' name={{$name}} value={{$value}} class='text-white p-2 w-32 font-semibold text-xl border-sky-500 bg-cyan-900 mt-5 rounded-md hover:bg-purple-400 hover:cursor-pointer' />

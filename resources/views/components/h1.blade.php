@@ -1,1 +1,1 @@
-<h1 class='text-3xl font-semibold'>{{$text}}</h1>
+<h1 class='text-4xl font-semibold font-kdam-thmor-pro'>{{$text}}</h1><br>

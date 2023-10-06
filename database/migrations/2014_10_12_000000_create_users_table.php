@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->tinyInteger('rank')->default(0);
             $table->rememberToken();
             $table->bigInteger('number_of_blogs')->default(0);
             $table->bigInteger('number_of_comments')->default(0);

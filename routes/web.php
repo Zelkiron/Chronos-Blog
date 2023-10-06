@@ -43,7 +43,13 @@ Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 Route::get('/register', [UserController::class, 'create'])->name('user.create');
 
-Route::post('/blogs', [UserController::class, 'store'])->name('user.store');
+Route::post('/register', [UserController::class, 'store'])->name('user.store');
+
+Route::get('/login', [UserController::class, 'showLogin'])->name('user.showLogin');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('user.logout');
+
+Route::post('/login', [UserController::class, 'login'])->name('user.login');
 
 Route::get('/user/{user}/edit', [UserController::class, 'create'])->name('user.create');
 

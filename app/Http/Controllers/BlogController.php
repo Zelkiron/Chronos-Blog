@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -14,22 +16,26 @@ class BlogController extends Controller
 
     public function show(Blog $blog) {
         $comments = $blog->getComments();
+        $blog->author_name = $blog->getAuthor();
+        $blog->category_name = $blog->getCategory();
         return view('blog.show', ['blog' => $blog, 'comments' => $comments]);
     }
 
     public function create() {
-        return view('blog.create');
+        $categories = Category::all();
+        return view('blog.create', ['categories' => $categories]);
     }
 
     public function store(Request $request) {
-        $data = $request->validate([
-            'category_id' => 'required|numeric',
-            'author_id' => 'required|numeric',
-            'title' => 'required',
-            'content' => 'required'
+        $blog_data = $request->validate([
+            'category_id' => 'required|string|numeric',
+            'title' => 'required|string',
+            'content' => 'required|string'
         ]);
 
-        $blog = Blog::create($data);
+        $blog_data['author_id'] = Auth::id();
+
+        $blog = Blog::create($blog_data);
 
         return redirect(route('blog.show', ['blog' => $blog]))->with('success', 'Blog Created!');
     }
